@@ -33,6 +33,14 @@ body {
     font-family: 'Poppins', sans-serif; /* Apply the custom font to the scan box */
 }
 
+.watermark {
+    position: absolute; /* Set position to absolute */
+    bottom: 10px; /* Distance from the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    font-size: 12px; /* Adjust font size */
+    color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+}
 
 #scanner-container {
     text-align: center;
