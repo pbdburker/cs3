@@ -1,15 +1,4 @@
-
 const previousScans = [];
-const MAX_PAST_SCANS = 1000; // Maximum number of past scans to keep
-
-// Load previous scans from localStorage on page load
-document.addEventListener('DOMContentLoaded', function () {
-    const storedScans = localStorage.getItem('previousScans');
-    if (storedScans) {
-        previousScans.push(...JSON.parse(storedScans));
-        updatePreviousScansList();
-    }
-});
 
 function checkItem(barcode) {
     var foundItem = itemList.find(item => item.barcode === barcode);
@@ -36,7 +25,6 @@ function checkItem(barcode) {
 
     document.getElementById('barcode-input').value = '';
     updatePreviousScansList();
-    saveScansToLocalStorage(); // Save the scans to localStorage
 }
 
 function handleKeyDown(event) {
@@ -85,16 +73,6 @@ function flashBackground(color) {
         // Remove the overlay after the transition ends
         document.body.removeChild(overlay);
     });
-}
-
-function saveScansToLocalStorage() {
-    // Truncate the array to the maximum allowed size
-    if (previousScans.length > MAX_PAST_SCANS) {
-        previousScans.length = MAX_PAST_SCANS;
-    }
-
-    // Save the scans to localStorage
-    localStorage.setItem('previousScans', JSON.stringify(previousScans));
 }
 
 document.addEventListener('DOMContentLoaded', function () {
