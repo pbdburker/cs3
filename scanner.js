@@ -44,13 +44,11 @@ function handleKeyDown(event) {
     if (event.key === 'Enter' && !isProcessing) {
         event.preventDefault();
         const barcode = document.getElementById('barcode-input').value;
-        
+
         isProcessing = true; // Set flag to indicate processing
-        
-        setTimeout(() => {
-            checkItem(barcode);
-            isProcessing = false; // Reset flag after processing
-        }, 500); // Adjust the delay as needed (in milliseconds)
+
+        checkItem(barcode);
+        isProcessing = false; // Reset flag after processing
     }
 }
 
