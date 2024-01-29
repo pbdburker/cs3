@@ -24,13 +24,15 @@ body {
 }
 
 #barcode-input {
-    padding: 8px;
-    margin-top: 10px;
-    background-color: #333; /* Darker background for the barcode input field */
-    color: white; /* White text color for the barcode input field */
-    outline: none; /* Remove the default focus outline */
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #f0f0f0; /* Light gray background for input field */
+    color: #333; /* Dark text color for input field */
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    font-family: 'Poppins', sans-serif; /* Apply the custom font to the scan box */
 }
 
 .watermark {
@@ -95,6 +97,6 @@ body {
 
 #version {
     margin-top: 20px;
-    font-size: 16px; /* Increased font size */
+    font-size: 14px; /* Increased font size */
     color: #ddd; /* Lighter text color for the version */
 }
