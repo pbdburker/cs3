@@ -38,17 +38,11 @@ function playWrongSound() {
     wrongAudio.play();
 }
 
-let isProcessing = false; // Flag to track if a scan is being processed
-
 function handleKeyDown(event) {
-    if (event.key === 'Enter' && !isProcessing) {
+    if (event.key === 'Enter') {
         event.preventDefault();
         const barcode = document.getElementById('barcode-input').value;
-
-        isProcessing = true; // Set flag to indicate processing
-
         checkItem(barcode);
-        isProcessing = false; // Reset flag after processing
     }
 }
 
