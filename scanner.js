@@ -3,12 +3,15 @@ const successAudio = new Audio('success.mp3');
 const wrongAudio = new Audio('wrong.mp3');
 
 function playSuccessSound() {
+    successAudio.currentTime = 0; // Reset playback position to start
     successAudio.play();
 }
 
 function playWrongSound() {
+    wrongAudio.currentTime = 0; // Reset playback position to start
     wrongAudio.play();
 }
+
 
 // Define previousScans array
 const previousScans = [];
