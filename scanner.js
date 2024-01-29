@@ -75,8 +75,21 @@ function flashBackground(color) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('barcode-input').focus();
+// Listen for keydown events on the entire document
+document.addEventListener('keydown', handleKeyDown);
+
+// Listen for barcode scans on the entire document
+document.addEventListener('keypress', function(event) {
+    // Check if the key pressed is a valid character for a barcode (e.g., numbers, letters)
+    if (!document.getElementById('barcode-input').matches(':focus') && isBarcodeCharacter(event.key)) {
+        // Append the scanned character to the barcode input field
+        document.getElementById('barcode-input').value += event.key;
+    }
 });
 
-document.addEventListener('keydown', handleKeyDown); // Listen for keydown on the entire document
+// Function to check if the scanned character is valid for a barcode
+function isBarcodeCharacter(char) {
+    // Define your criteria for a valid barcode character here
+    // For example, if you only accept numeric characters:
+    return /^\d+$/.test(char);
+}
