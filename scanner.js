@@ -1,18 +1,3 @@
-// Preload audio files
-const successAudio = new Audio('success.mp3');
-const wrongAudio = new Audio('wrong.mp3');
-
-function playSuccessSound() {
-    successAudio.currentTime = 0; // Reset playback position to start
-    successAudio.play();
-}
-
-function playWrongSound() {
-    wrongAudio.currentTime = 0; // Reset playback position to start
-    wrongAudio.play();
-}
-
-
 // Define previousScans array
 const previousScans = [];
 
@@ -43,11 +28,29 @@ function checkItem(barcode) {
     updatePreviousScansList();
 }
 
+function playSuccessSound() {
+    const successAudio = new Audio('success.mp3');
+    successAudio.play();
+}
+
+function playWrongSound() {
+    const wrongAudio = new Audio('wrong.mp3');
+    wrongAudio.play();
+}
+
+let isProcessing = false; // Flag to track if a scan is being processed
+
 function handleKeyDown(event) {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && !isProcessing) {
         event.preventDefault();
         const barcode = document.getElementById('barcode-input').value;
-        checkItem(barcode);
+        
+        isProcessing = true; // Set flag to indicate processing
+        
+        setTimeout(() => {
+            checkItem(barcode);
+            isProcessing = false; // Reset flag after processing
+        }, 500); // Adjust the delay as needed (in milliseconds)
     }
 }
 
