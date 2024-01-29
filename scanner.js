@@ -75,6 +75,24 @@ function flashBackground(color) {
     });
 }
 
+let debounceTimer;
+
+function handleDebouncedInput(barcode) {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        checkItem(barcode);
+    }, 300); // Adjust the debounce time as needed (e.g., 300 milliseconds)
+}
+
+function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        const barcode = document.getElementById('barcode-input').value;
+        handleDebouncedInput(barcode);
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('barcode-input').focus();
 });
