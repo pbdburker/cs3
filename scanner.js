@@ -1,4 +1,3 @@
-// Define previousScans array
 const previousScans = [];
 
 function checkItem(barcode) {
@@ -15,27 +14,17 @@ function checkItem(barcode) {
     if (foundItem) {
         resultElement.innerText = 'Yes, the item is in the list.';
         resultElement.style.backgroundColor = '#8BC34A';
-        playSuccessSound();
+        playAudio('success.mp3');
         flashBackground('#8BC34A'); // Flash green background
     } else {
         resultElement.innerText = 'No, the item is not in the list.';
         resultElement.style.backgroundColor = '#FF5733';
-        playWrongSound();
+        playAudio('wrong.mp3');
         flashBackground('#FF5733'); // Flash red background
     }
 
     document.getElementById('barcode-input').value = '';
     updatePreviousScansList();
-}
-
-function playSuccessSound() {
-    const successAudio = new Audio('success.mp3');
-    successAudio.play();
-}
-
-function playWrongSound() {
-    const wrongAudio = new Audio('wrong.mp3');
-    wrongAudio.play();
 }
 
 function handleKeyDown(event) {
@@ -56,6 +45,11 @@ function updatePreviousScansList() {
         listItem.textContent = `${scan.barcode}`;
         previousScansList.appendChild(listItem);
     });
+}
+
+function playAudio(audioFile) {
+    const audio = new Audio(audioFile);
+    audio.play();
 }
 
 function flashBackground(color) {
