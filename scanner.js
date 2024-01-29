@@ -1,3 +1,16 @@
+// Preload audio files
+const successAudio = new Audio('success.mp3');
+const wrongAudio = new Audio('wrong.mp3');
+
+function playSuccessSound() {
+    successAudio.play();
+}
+
+function playWrongSound() {
+    wrongAudio.play();
+}
+
+// Define previousScans array
 const previousScans = [];
 
 function checkItem(barcode) {
@@ -14,12 +27,12 @@ function checkItem(barcode) {
     if (foundItem) {
         resultElement.innerText = 'Yes, the item is in the list.';
         resultElement.style.backgroundColor = '#8BC34A';
-        playAudio('success.mp3');
+        playSuccessSound();
         flashBackground('#8BC34A'); // Flash green background
     } else {
         resultElement.innerText = 'No, the item is not in the list.';
         resultElement.style.backgroundColor = '#FF5733';
-        playAudio('wrong.mp3');
+        playWrongSound();
         flashBackground('#FF5733'); // Flash red background
     }
 
@@ -47,11 +60,6 @@ function updatePreviousScansList() {
     });
 }
 
-function playAudio(audioFile) {
-    const audio = new Audio(audioFile);
-    audio.play();
-}
-
 function flashBackground(color) {
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
@@ -74,24 +82,6 @@ function flashBackground(color) {
         document.body.removeChild(overlay);
     });
 }
-
-let debounceTimer;
-
-function handleDebouncedInput(barcode) {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-        checkItem(barcode);
-    }, 300); // Adjust the debounce time as needed (e.g., 300 milliseconds)
-}
-
-function handleKeyDown(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        const barcode = document.getElementById('barcode-input').value;
-        handleDebouncedInput(barcode);
-    }
-}
-
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('barcode-input').focus();
